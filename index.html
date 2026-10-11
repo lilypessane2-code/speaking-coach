@@ -2,74 +2,87 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Speaking Coach — Lili's interactive speaking book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
-/* Speaking Coach — original brain-game palette (her request: no other colors).
-   Same colors in light and dark widget themes. */
+/* Speaking Coach — pink / white / black, mature editorial.
+   Near-black headers, white surfaces, deep raspberry + dusty rose accents.
+   Same colors in light and dark widget themes (her request). */
 :root{
-  --sc-page:#f8f1e2;
+  --sc-page:#fdf7f9;
   --sc-surface:#ffffff;
-  --sc-surfacem:#f6f0ea;
-  --sc-text:#2b2118;
-  --sc-muted:#7a6a5c;
-  --sc-border:#e8d9cf;
+  --sc-surfacem:#f9edf1;
+  --sc-text:#1c1214;
+  --sc-muted:#6e5b62;
+  --sc-border:#e9d3db;
   --sc-accent:#a10728;
-  --sc-accent-deep:#720808;
+  --sc-accent-deep:#1c1214;
   --sc-accent-text:#a10728;
-  --sc-gold:#b98a1e;
-  --sc-gold-ink:#7c5c0d;
-  --sc-mi-bg:#fff7e6;
-  --sc-mi-border:#e8a13c;
-  --sc-tagbg:rgba(161,7,40,.10);
-  --sc-accent-soft:rgba(161,7,40,.18);
+  --sc-gold:#c98a9e;
+  --sc-gold-ink:#a10728;
+  --sc-mi-bg:#fdf0f4;
+  --sc-mi-border:#a10728;
+  --sc-tagbg:rgba(161,7,40,.08);
+  --sc-accent-soft:rgba(161,7,40,.16);
   --sc-good:#16a34a;
   --sc-goodbg:rgba(22,163,74,.12);
   --sc-bad:#dc2626;
   --sc-badbg:rgba(220,38,38,.10);
+  --sc-font-display:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sc-font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  color-scheme:light;
 }
 html[data-theme="dark"]{
-  --sc-page:#f8f1e2;
+  --sc-page:#fdf7f9;
   --sc-surface:#ffffff;
-  --sc-surfacem:#f6f0ea;
-  --sc-text:#2b2118;
-  --sc-muted:#7a6a5c;
-  --sc-border:#e8d9cf;
+  --sc-surfacem:#f9edf1;
+  --sc-text:#1c1214;
+  --sc-muted:#6e5b62;
+  --sc-border:#e9d3db;
   --sc-accent:#a10728;
-  --sc-accent-deep:#720808;
+  --sc-accent-deep:#1c1214;
   --sc-accent-text:#a10728;
-  --sc-gold:#b98a1e;
-  --sc-gold-ink:#7c5c0d;
-  --sc-mi-bg:#fff7e6;
-  --sc-mi-border:#e8a13c;
-  --sc-tagbg:rgba(161,7,40,.10);
-  --sc-accent-soft:rgba(161,7,40,.18);
+  --sc-gold:#c98a9e;
+  --sc-gold-ink:#a10728;
+  --sc-mi-bg:#fdf0f4;
+  --sc-mi-border:#a10728;
+  --sc-tagbg:rgba(161,7,40,.08);
+  --sc-accent-soft:rgba(161,7,40,.16);
   --sc-good:#16a34a;
   --sc-goodbg:rgba(22,163,74,.12);
   --sc-bad:#dc2626;
   --sc-badbg:rgba(220,38,38,.10);
+  --sc-font-display:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sc-font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   color-scheme:light;
 }
 html{color-scheme:light;}
 body{margin:0;background:var(--sc-page);}
-#sco{box-sizing:border-box;max-width:1120px;margin:0 auto;padding:0 14px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--sc-text);background:var(--sc-page);}
+#sco{box-sizing:border-box;max-width:1120px;margin:0 auto;padding:0 14px;font-family:var(--sc-font-body);color:var(--sc-text);background:var(--sc-page);}
 #sco *{box-sizing:border-box;}
-.sc-head{background:linear-gradient(135deg,#720808,#a10728);color:#fff;border-radius:14px;padding:16px 18px;margin-bottom:12px;}
-.sc-head h2{margin:0 0 4px;font-size:20px;letter-spacing:.3px;}
+b,strong{font-weight:800;}
+.sc-head{position:relative;background:linear-gradient(135deg,#1c1214,#471420);color:#fff;border-radius:14px;padding:16px 18px;margin-bottom:12px;border-bottom:3px solid var(--sc-accent);}
+.sc-head h2{margin:0 0 4px;font-family:var(--sc-font-display);font-weight:800;font-size:24px;letter-spacing:.3px;}
 .sc-head p{margin:0;font-size:13px;opacity:.92;}
+.sc-fs{position:absolute;top:12px;right:12px;display:none;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:9px;padding:7px 11px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--sc-font-body);}
+.sc-fs:hover{background:rgba(255,255,255,.28);}
 .sc-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
 .sc-story{font-size:15px;line-height:1.7;color:var(--sc-text);margin-bottom:14px;}
-.sc-tab{flex:1 1 auto;text-align:center;background:var(--sc-surface);border:2px solid var(--sc-border);border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:700;color:var(--sc-muted);cursor:pointer;white-space:nowrap;}
+.sc-story strong,.sc-intro strong{color:var(--sc-accent);}
+.sc-tab{flex:1 1 auto;text-align:center;background:var(--sc-surface);border:2px solid var(--sc-border);border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:700;color:var(--sc-muted);cursor:pointer;white-space:nowrap;font-family:var(--sc-font-body);}
 .sc-tab:hover{border-color:var(--sc-accent);}
-.sc-tab.active{border-color:var(--sc-accent);color:var(--sc-text);background:var(--sc-tagbg);}
+.sc-tab.active{border-color:var(--sc-accent-deep);color:var(--sc-accent-deep);background:var(--sc-tagbg);}
 .sc-panel{display:none;}
 .sc-panel.active{display:block;}
 .sc-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:var(--sc-muted);}
-.sc-score{font-weight:700;color:var(--sc-gold-ink);font-size:15px;}
+.sc-score{font-weight:800;color:var(--sc-gold-ink);font-size:15px;}
 .sc-passage{background:var(--sc-surfacem);border-left:4px solid var(--sc-accent);border-radius:0 10px 10px 0;padding:10px 12px;font-size:14px;line-height:1.55;color:var(--sc-text);margin-bottom:12px;display:none;}
-.sc-q{font-size:17px;font-weight:700;margin:4px 0 14px;line-height:1.35;color:var(--sc-text);}
+.sc-q{font-size:18px;font-weight:700;margin:4px 0 14px;line-height:1.4;color:var(--sc-text);font-family:var(--sc-font-display);}
 .sc-opts{display:flex;flex-direction:column;gap:10px;}
-.sc-opt{background:var(--sc-surface);border:2px solid var(--sc-border);border-radius:12px;padding:13px 14px;font-size:15px;color:var(--sc-text);text-align:left;cursor:pointer;width:100%;transition:border-color .15s,transform .05s;}
+.sc-opt{background:var(--sc-surface);border:2px solid var(--sc-border);border-radius:12px;padding:13px 14px;font-size:15px;color:var(--sc-text);text-align:left;cursor:pointer;width:100%;transition:border-color .15s,transform .05s;font-family:var(--sc-font-body);}
 .sc-opt:hover{border-color:var(--sc-accent);}
 .sc-opt:active{transform:scale(.99);}
 .sc-opt.correct{border-color:var(--sc-good);background:var(--sc-goodbg);color:var(--sc-text);}
@@ -77,39 +90,46 @@ body{margin:0;background:var(--sc-page);}
 .sc-opt.dim{opacity:.55;}
 .sc-why{margin-top:12px;font-size:13.5px;line-height:1.5;background:var(--sc-surfacem);border-radius:10px;padding:10px 12px;color:var(--sc-muted);display:none;}
 .sc-why b{color:var(--sc-text);}
-.sc-btn{background:linear-gradient(135deg,#720808,#a10728);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:16px;font-weight:700;cursor:pointer;width:100%;margin-top:6px;}
-.sc-btn:hover{filter:brightness(1.08);}
+.sc-btn{background:var(--sc-accent-deep);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:16px;font-weight:800;cursor:pointer;width:100%;margin-top:6px;font-family:var(--sc-font-body);letter-spacing:.3px;}
+.sc-btn:hover{background:#2e1a20;}
 .sc-center{text-align:center;padding:24px 10px;}
-.sc-big{font-size:44px;font-weight:800;margin:6px 0;color:var(--sc-text);}
+.sc-big{font-size:44px;font-weight:800;margin:6px 0;color:var(--sc-text);font-family:var(--sc-font-display);}
 .sc-sub{color:var(--sc-muted);font-size:14px;margin:0 0 14px;line-height:1.5;}
 .sc-best{display:inline-block;background:var(--sc-surfacem);border-radius:99px;padding:6px 14px;font-size:13px;color:var(--sc-muted);margin-top:12px;}
 .sc-card{background:var(--sc-surface);border:2px solid var(--sc-border);border-radius:12px;padding:14px;margin-bottom:10px;cursor:pointer;}
 .sc-card:hover{border-color:var(--sc-accent);}
-.sc-card-t{font-weight:700;font-size:15px;margin:6px 0 4px;color:var(--sc-text);}
+.sc-card-t{font-weight:700;font-size:16px;margin:6px 0 4px;color:var(--sc-text);font-family:var(--sc-font-display);}
 .sc-card-s{font-size:13px;color:var(--sc-muted);line-height:1.45;}
-.sc-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sc-accent-text);background:var(--sc-tagbg);border-radius:99px;padding:4px 10px;}
-.sc-back{background:none;border:none;color:var(--sc-muted);font-size:14px;cursor:pointer;padding:0 0 10px;}
+.sc-tag{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--sc-accent-text);background:var(--sc-tagbg);border-radius:99px;padding:4px 10px;}
+.sc-back{background:none;border:none;color:var(--sc-muted);font-size:14px;font-weight:700;cursor:pointer;padding:0 0 10px;font-family:var(--sc-font-body);}
 .sc-back:hover{color:var(--sc-accent);}
 .sc-intro{font-size:14.5px;line-height:1.6;margin-bottom:12px;color:var(--sc-text);}
-.sc-sec{font-weight:700;margin:16px 0 6px;font-size:15px;color:var(--sc-text);}
+.sc-sec{font-weight:800;margin:18px 0 6px;font-size:12.5px;color:var(--sc-accent);text-transform:uppercase;letter-spacing:1.4px;font-family:var(--sc-font-body);}
 .sc-kbox{background:var(--sc-tagbg);border:1px solid var(--sc-accent-soft);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:14px;line-height:1.65;white-space:pre-line;color:var(--sc-text);}
+.sc-kbox b{color:var(--sc-accent);}
 .sc-mainidea{background:var(--sc-mi-bg);border-left:4px solid var(--sc-mi-border);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:14px;line-height:1.6;font-style:italic;color:var(--sc-text);}
 .sc-take{font-size:14px;line-height:1.6;background:var(--sc-surfacem);border-radius:10px;padding:12px;margin:12px 0;color:var(--sc-text);}
 .sc-take b{color:var(--sc-text);}
-.sc-mark{color:var(--sc-accent-text);font-weight:700;}
-.sc-area{width:100%;min-height:140px;background:var(--sc-surface);border:2px solid var(--sc-border);border-radius:12px;padding:12px;font-size:15px;line-height:1.55;color:var(--sc-text);font-family:inherit;resize:vertical;}
+.sc-mark{color:var(--sc-accent-text);font-weight:800;}
+.sc-area{width:100%;min-height:140px;background:var(--sc-surface);border:2px solid var(--sc-border);border-radius:12px;padding:12px;font-size:15px;line-height:1.55;color:var(--sc-text);font-family:var(--sc-font-body);resize:vertical;}
 .sc-area::placeholder{color:var(--sc-muted);}
 .sc-btn2{background:var(--sc-surface) !important;color:var(--sc-text) !important;border:2px solid var(--sc-border);}
+
+/* tab header picture — small editorial banner */
+.sc-tabimg{margin:0 0 12px;border-radius:14px;overflow:hidden;border:1px solid var(--sc-border);background:var(--sc-surface);}
+.sc-tabimg img{width:100%;height:120px;object-fit:cover;display:block;}
+.sc-tabimg figcaption{font-size:11px;color:var(--sc-muted);padding:6px 12px;background:var(--sc-surface);}
 
 @media(min-width:760px){
 #sco{padding:0 26px;}
 .sc-head{padding:22px 26px;}
-.sc-head h2{font-size:26px;}
+.sc-head h2{font-size:30px;}
+.sc-tabimg img{height:150px;}
 #l-list,#b-list,#sb-list,#m-list,#a-list,#z-list,#rt-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;}
 #l-list>.sc-card,#b-list>.sc-card,#sb-list>.sc-card,#m-list>.sc-card,#z-list>.sc-card,#a-list>.sc-card,#rt-list>.sc-card{margin-bottom:0;}
 .sc-span{grid-column:1/-1;}
-.sc-q{font-size:19px;}
-.sc-card-t{font-size:17px;}
+.sc-q{font-size:21px;}
+.sc-card-t{font-size:18px;}
 .sc-btn{font-size:16px;padding:13px 22px;}
 .sc-area{min-height:180px;font-size:16px;}
 }
@@ -128,8 +148,8 @@ body{margin:0;background:var(--sc-page);}
 
 /* highlighting + notebook — additive */
 span.hl{background:#f6e3a1;border-radius:3px;padding:0 1px;}
-#hl-pop{position:fixed;z-index:9999;display:none;background:#2b2118;border-radius:10px;padding:4px;box-shadow:0 4px 14px rgba(0,0,0,.25);}
-#hl-pop button{background:none;border:0;color:#fff;font-weight:700;font-size:14px;padding:8px 14px;cursor:pointer;font-family:inherit;}
+#hl-pop{position:fixed;z-index:9999;display:none;background:#1c1214;border-radius:10px;padding:4px;box-shadow:0 4px 14px rgba(0,0,0,.25);}
+#hl-pop button{background:none;border:0;color:#fff;font-weight:700;font-size:14px;padding:8px 14px;cursor:pointer;font-family:var(--sc-font-body);}
 #hl-pop button.danger{color:#f6e3a1;}
 
 </style>
@@ -137,6 +157,7 @@ span.hl{background:#f6e3a1;border-radius:3px;padding:0 1px;}
 <body>
 <div id="sco">
 <div class="sc-head">
+<button class="sc-fs" id="fs-btn" style="display:none" title="Full screen">&#x26F6; Full screen</button>
 <h2>🎤 Speaking Coach</h2>
 <p>Your interactive book for fluent, confident English — lessons, drills, and practice with your AI coach</p>
 </div>
@@ -189,6 +210,41 @@ talkwithme:"Practice your speech with your AI coach — in chat.",
 styles:"One idea, three voices — work, friendly, casual.",
 books:"The sources behind your lessons.",
 notebook:"Your organized space — every note, practice log, and highlight in one place."};
+
+/* Small illustrative picture per tab header — openly licensed Wikimedia Commons images,
+   verified resolving (HTTP 200) at build time. Remote URLs only, never inlined. */
+var TABIMG={
+overview:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Open_book_1_%28Unsplash%29.jpg?width=640",c:"Photo: Alina Daniker / CC0 · Wikimedia Commons",a:"Open book"},
+today:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/North_Point_Sunrise_20090201_0622.jpg?width=640",c:"Photo: Dori / CC BY-SA 3.0 us · Wikimedia Commons",a:"Sunrise"},
+speakup:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Alan_Hassenfeld%2C_Chairman%2C_Hasbro%2C_in_discussion_with_Hubert_Burda%2C_Chairman%2C_Hubert_Burda_Media%2C_at_the_Horasis_Global_India_Business_Meeting_2009_-_Flickr_-_Horasis.jpg?width=640",c:"Photo: Frank-Jürgen Richter / CC BY 2.0 · Wikimedia Commons",a:"Business discussion"},
+present:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Keynote_Speaker_03.jpg?width=640",c:"Photo: Stefanie Gunawan / CC BY-SA 4.0 · Wikimedia Commons",a:"Keynote speaker on stage"},
+boundaries:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/010_Pantha_%28Raised_Hand%29_%289142080942%29.jpg?width=640",c:"Photo: Photo Dharma / CC BY 2.0 · Wikimedia Commons",a:"Raised hand"},
+persuade:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Female_civilian_and_male_serviceman_shaking_hands._MOD_45159433.jpg?width=640",c:"Photo: Harland Quarrington / OGL v1.0 · Wikimedia Commons",a:"Handshake"},
+thinkfast:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Chess_game_Staunton_No._6.jpg?width=640",c:"Photo: Wilfredor / CC0 · Wikimedia Commons",a:"Chess game"},
+pronounce:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Close_up_view_of_a_microphone_set_up_in_a_recording_studio.jpg?width=640",c:"Photo: Shixart1985 / CC BY 2.0 · Wikimedia Commons",a:"Studio microphone"},
+grammar:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Clark_Hall_A_Concise_Anglo-Saxon_Dictionary_1894_title_page.jpg?width=640",c:"Photo: John Richard Clark Hall / Public domain · Wikimedia Commons",a:"Old dictionary title page"},
+readaloud:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Woman_Reading_a_Book.jpg?width=640",c:"Photo: Nefrit Lazurit / CC BY-SA 4.0 · Wikimedia Commons",a:"Woman reading a book"},
+write:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Fountain_pen_writing_%28literacy%29.jpg?width=640",c:"Photo: Petar Milošević / CC BY-SA 4.0 · Wikimedia Commons",a:"Fountain pen writing"},
+comprehend:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Person_reading_a_newspaper_%28Unsplash%29.jpg?width=640",c:"Photo: Roman Kraft / CC0 · Wikimedia Commons",a:"Person reading a newspaper"},
+listen:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Headphones_on_desk.jpg?width=640",c:"Photo: Lirazelf / CC BY-SA 3.0 · Wikimedia Commons",a:"Headphones on a desk"},
+talkwithme:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Juneteenth_celebration_-_Ambassador_Burns_talking_to_two_people.jpg?width=640",c:"Photo: Ambassador Nicholas Burns / Public domain · Wikimedia Commons",a:"Conversation between people"},
+styles:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Card_stock_speech_balloons.jpg?width=640",c:"Photo: Martin Cox / CC BY 2.0 · Wikimedia Commons",a:"Speech balloons"},
+books:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Stack_of_Books_for_decor.jpg?width=640",c:"Photo: mycurrency.com / CC BY-SA 4.0 · Wikimedia Commons",a:"Stack of books"},
+notebook:{u:"https://commons.wikimedia.org/wiki/Special:FilePath/Desk_with_notebook_pens_and_glasses.jpg?width=640",c:"Photo: Shixart1985 / CC BY 2.0 · Wikimedia Commons",a:"Notebook and pen on a desk"}};
+function tabImg(tab){
+  var t=TABIMG[tab];if(!t)return "";
+  return '<figure class="sc-tabimg"><img src="'+t.u+'" alt="'+esc(t.a)+'" loading="lazy"><figcaption>'+esc(t.c)+'</figcaption></figure>';
+}
+/* Bold key vocabulary (Words-to-know terms) where they appear in lesson text. */
+function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+function boldTerms(html,words){
+  var out=html;
+  (words||[]).forEach(function(w){
+    var term=String(w[0]||"").trim();if(term.length<3)return;
+    try{out=out.replace(new RegExp("\\b"+escRe(term)+"\\b","i"),"<strong>$&</strong>");}catch(e){}
+  });
+  return out;
+}
 
 /* What each tab builds in you — plain words, concrete outcomes. */
 var HELPS={
@@ -280,10 +336,10 @@ function lessonHTML(d){
   h+='<span class="sc-tag">'+esc(TABNAME[d.tab])+'</span>';
   h+='<div class="sc-card-t" style="font-size:19px;margin:8px 0">'+esc(d.t)+'</div>';
   if(d.src&&d.src!=="Coach")h+='<div class="sc-card-s" style="margin-bottom:8px">Technique from: '+esc(d.src==="Sharma"?"Arun Sharma, Verbal Ability & Reading Comprehension for CAT":d.src==="Bernardo"?"Bernardo Albernaz (@bernardoalbz)":"Embrace Your Hobbies with ChatGPT")+'</div>';
-  h+='<div class="sc-sec">The story</div><div class="sc-story">'+esc(d.story)+'</div>';
-  h+='<div class="sc-sec">The technique</div><div class="sc-mainidea">'+esc(d.tech)+'</div>';
+  h+='<div class="sc-sec">The story</div><div class="sc-story">'+boldTerms(esc(d.story),d.words)+'</div>';
+  h+='<div class="sc-sec">The technique</div><div class="sc-mainidea">'+boldTerms(esc(d.tech),d.words)+'</div>';
   if(d.words&&d.words.length){h+='<div class="sc-sec">Words to know</div><div class="sc-kbox">'+d.words.map(function(w){return "<b>"+esc(w[0])+"</b> — "+esc(w[1]);}).join("\n")+'</div>';}
-  h+='<div class="sc-sec">Your turn — create</div><div class="sc-take">'+esc(d.try)+'</div>';
+  h+='<div class="sc-sec">Your turn — create</div><div class="sc-take">'+boldTerms(esc(d.try),d.words)+'</div>';
   var qz=quizHTML(d.quiz||[]);h+=qz.html;
   var done=!!saved.done[d.id];
   h+='<button class="sc-btn '+(done?"sc-btn2":"")+'" id="done-btn" style="margin-top:14px">'+(done?"Done ✓ — tap to undo":"Mark lesson done")+'</button>';
@@ -632,6 +688,7 @@ function render(tab){
   if(tab==="overview"){renderOverview(v);return;}
   if(tab==="notebook"){renderNotebook(v);return;}
   var h='<div class="sc-intro">'+esc(INTRO[tab])+'</div>';
+  h+=tabImg(tab);
   h+=tabMeta(tab);
   h+=cardList(inTab(tab));
   v.innerHTML=h;bindCards();
@@ -649,7 +706,8 @@ function renderToday(v){
   var qq=spick(rnd,qpool,1)[0];
   var talk=spick(rnd,inTab("talkwithme").filter(function(d){return d.kind==="prompt";}),1)[0];
   var doneDaily=!!(saved.daily&&saved.daily[key]);
-  var h='<div class="sc-card" style="cursor:default"><span class="sc-tag">Daily warm-up</span><div class="sc-card-t">Today\'s session</div><div class="sc-card-s">Four small steps. About 10 minutes. A new set every day.</div></div>';
+  var h=tabImg("today");
+  h+='<div class="sc-card" style="cursor:default"><span class="sc-tag">Daily warm-up</span><div class="sc-card-t">Today\'s session</div><div class="sc-card-s">Four small steps. About 10 minutes. A new set every day.</div></div>';
   function stepCard(n,tag,title,sub,id){
     return '<div class="sc-card" data-open="'+id+'"><span class="sc-tag">Step '+n+' · '+esc(tag)+'</span><div class="sc-card-t">'+esc(title)+'</div><div class="sc-card-s">'+esc(sub)+'</div></div>';
   }
@@ -674,6 +732,7 @@ function renderToday(v){
 /* ---------- overview: map of the whole book, generated from DATA ---------- */
 function renderOverview(v){
   var h='<div class="sc-intro">'+esc(INTRO.overview)+'</div>';
+  h+=tabImg("overview");
   h+='<div class="sc-meta"><span>'+DATA.length+' items · '+(TABS.length-1)+' tabs</span><span class="sc-score">Tap a tab to jump in</span></div>';
   TABS.forEach(function(t){
     if(t[0]==="overview")return;
@@ -708,6 +767,7 @@ function renderOverview(v){
 /* ---------- notebook: all her notes, logs, and highlights in one place ---------- */
 function renderNotebook(v){
   var h='<div class="sc-intro">'+esc(INTRO.notebook)+'</div>';
+  h+=tabImg("notebook");
   /* (a) My notes */
   h+='<div class="sc-sec">My notes</div>';
   var nids=Object.keys(saved.notes||{});
@@ -766,6 +826,17 @@ function boot(){
   TABS.forEach(function(t,i){h+='<button class="sc-tab'+(i===0?" active":"")+'" data-tab="'+t[0]+'">'+esc(t[1])+'</button>';});
   tabs.innerHTML=h;
   tabs.querySelectorAll(".sc-tab").forEach(function(b){b.onclick=function(){render(b.getAttribute("data-tab"));} ;});
+  var fbtn=$("fs-btn");
+  if(fbtn&&document.documentElement.requestFullscreen){
+    fbtn.style.display="";
+    fbtn.onclick=function(){
+      if(document.fullscreenElement)document.exitFullscreen();
+      else{try{document.documentElement.requestFullscreen();}catch(e){}}
+    };
+    document.addEventListener("fullscreenchange",function(){
+      fbtn.innerHTML=document.fullscreenElement?"&#x2715; Exit":"&#x26F6; Full screen";
+    });
+  }
   document.addEventListener("mouseup",onSelEnd);
   document.addEventListener("touchend",onSelEnd);
   document.addEventListener("scroll",function(){hideHlPop();},true);
