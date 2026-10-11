@@ -5,63 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Speaking Coach — Lili's interactive speaking book</title>
 <style>
-/* Speaking Coach — mature business palette.
-   Light (default + standalone/GitHub): warm beige page, ivory surfaces, espresso text,
-   oxblood/raspberry brand anchors, champagne-gold accents.
-   Dark (chat widget dark theme): deep espresso-plum page, warm dark surfaces, ivory text,
-   lightened raspberry + gold accents. Every text/background pair is explicit per theme. */
+/* Speaking Coach — original brain-game palette (her request: no other colors).
+   Same colors in light and dark widget themes. */
 :root{
   --sc-page:#f1e8d5;
-  --sc-surface:#fffdf8;
-  --sc-surfacem:#f6eddb;
+  --sc-surface:#ffffff;
+  --sc-surfacem:#f6f0ea;
   --sc-text:#2b2118;
-  --sc-muted:#6e5d49;
-  --sc-border:#dcc9a8;
+  --sc-muted:#7a6a5c;
+  --sc-border:#e8d9cf;
   --sc-accent:#a10728;
   --sc-accent-deep:#720808;
   --sc-accent-text:#a10728;
   --sc-gold:#b98a1e;
   --sc-gold-ink:#7c5c0d;
-  --sc-mi-bg:#fff4da;
-  --sc-mi-border:#c9a227;
-  --sc-tagbg:rgba(161,7,40,.08);
-  --sc-accent-soft:rgba(161,7,40,.22);
-  --sc-good:#1a7f4b;
-  --sc-goodbg:rgba(26,127,75,.12);
-  --sc-bad:#c22a2a;
-  --sc-badbg:rgba(194,42,42,.10);
+  --sc-mi-bg:#fff7e6;
+  --sc-mi-border:#e8a13c;
+  --sc-tagbg:rgba(161,7,40,.10);
+  --sc-accent-soft:rgba(161,7,40,.18);
+  --sc-good:#16a34a;
+  --sc-goodbg:rgba(22,163,74,.12);
+  --sc-bad:#dc2626;
+  --sc-badbg:rgba(220,38,38,.10);
 }
 html[data-theme="dark"]{
-  --sc-page:#4a3a2c;
-  --sc-surface:#584434;
-  --sc-surfacem:#64513d;
-  --sc-text:#f7efe0;
-  --sc-muted:#d8c5ab;
-  --sc-border:#71604a;
-  --sc-accent:#f090a8;
-  --sc-accent-deep:#a31230;
-  --sc-accent-text:#f9c9d4;
-  --sc-gold:#d4af37;
-  --sc-gold-ink:#e8cd6f;
-  --sc-mi-bg:#5c4a26;
-  --sc-mi-border:#d4af37;
-  --sc-tagbg:rgba(240,144,168,.16);
-  --sc-accent-soft:rgba(240,144,168,.35);
-  --sc-good:#4ade80;
-  --sc-goodbg:rgba(74,222,128,.14);
-  --sc-bad:#f87171;
-  --sc-badbg:rgba(248,113,113,.12);
-  color-scheme:dark;
+  --sc-page:#f1e8d5;
+  --sc-surface:#ffffff;
+  --sc-surfacem:#f6f0ea;
+  --sc-text:#2b2118;
+  --sc-muted:#7a6a5c;
+  --sc-border:#e8d9cf;
+  --sc-accent:#a10728;
+  --sc-accent-deep:#720808;
+  --sc-accent-text:#a10728;
+  --sc-gold:#b98a1e;
+  --sc-gold-ink:#7c5c0d;
+  --sc-mi-bg:#fff7e6;
+  --sc-mi-border:#e8a13c;
+  --sc-tagbg:rgba(161,7,40,.10);
+  --sc-accent-soft:rgba(161,7,40,.18);
+  --sc-good:#16a34a;
+  --sc-goodbg:rgba(22,163,74,.12);
+  --sc-bad:#dc2626;
+  --sc-badbg:rgba(220,38,38,.10);
+  color-scheme:light;
 }
-html[data-theme="dark"] .sc-head{background:linear-gradient(135deg,#8f1019,#c21838);}
-html[data-theme="dark"] .sc-btn{background:linear-gradient(135deg,#8f1019,#c21838);}
 html{color-scheme:light;}
 body{margin:0;background:var(--sc-page);}
 #sco{box-sizing:border-box;max-width:1120px;margin:0 auto;padding:0 14px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--sc-text);background:var(--sc-page);}
 #sco *{box-sizing:border-box;}
-.sc-head{background:linear-gradient(135deg,#720808,#a10728);color:#fff8f0;border-bottom:3px solid var(--sc-gold);border-radius:14px;padding:16px 18px;margin-bottom:12px;}
-.sc-head h2{margin:0 0 4px;font-size:20px;letter-spacing:.3px;color:#fff8f0;}
-.sc-head p{margin:0;font-size:13px;opacity:.92;color:#fff8f0;}
+.sc-head{background:linear-gradient(135deg,#720808,#a10728);color:#fff;border-radius:14px;padding:16px 18px;margin-bottom:12px;}
+.sc-head h2{margin:0 0 4px;font-size:20px;letter-spacing:.3px;}
+.sc-head p{margin:0;font-size:13px;opacity:.92;}
 .sc-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
 .sc-story{font-size:15px;line-height:1.7;color:var(--sc-text);margin-bottom:14px;}
 .sc-tab{flex:1 1 auto;text-align:center;background:var(--sc-surface);border:2px solid var(--sc-border);border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:700;color:var(--sc-muted);cursor:pointer;white-space:nowrap;}
@@ -82,7 +77,7 @@ body{margin:0;background:var(--sc-page);}
 .sc-opt.dim{opacity:.55;}
 .sc-why{margin-top:12px;font-size:13.5px;line-height:1.5;background:var(--sc-surfacem);border-radius:10px;padding:10px 12px;color:var(--sc-muted);display:none;}
 .sc-why b{color:var(--sc-text);}
-.sc-btn{background:linear-gradient(135deg,#720808,#a10728);color:#fff8f0;border:none;border-radius:12px;padding:14px 20px;font-size:16px;font-weight:700;cursor:pointer;width:100%;margin-top:6px;}
+.sc-btn{background:linear-gradient(135deg,#720808,#a10728);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:16px;font-weight:700;cursor:pointer;width:100%;margin-top:6px;}
 .sc-btn:hover{filter:brightness(1.08);}
 .sc-center{text-align:center;padding:24px 10px;}
 .sc-big{font-size:44px;font-weight:800;margin:6px 0;color:var(--sc-text);}
